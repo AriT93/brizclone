@@ -1,4 +1,0 @@
-<h1>wowza</h1>
-<h2>yowza</h2>
-
-<%= current_user.email %>
