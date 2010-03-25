@@ -1,1 +1,9 @@
+-if flash.has?(:notice)
+  %p= flash[:notice]
+%form{:id => "tweet", :method => "post", :action => "/twitter"}
+  %label Tweet a twat:
+  %br
+  %input{:id => "text", :type=> "text", :name => "text", :value => ""}
+  %br
+  %input{:type => "submit", :value => "Tweet that shit"}
 = partial("timeline", :collection => @tweets)
