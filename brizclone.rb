@@ -53,10 +53,8 @@ before do
   end
 end
 
-
 get '/' do
   redirect '/login' unless logged_in?
-  if session['atoken'] = ' '
   if @user
     @oauth.authorize_from_access(@user.atoken,@user.asecret)
     @profile = Twitter::Base.new(@oauth)
@@ -66,10 +64,8 @@ get '/' do
     session['rsecret'] = @oauth.request_token.secret
     redirect @oauth.request_token.authorize_url
   end
-  end
   haml :home
 end
-
 
 get '/auth' do
   @oauth.authorize_from_request(session['rtoken'],session['rsecret'],params[:oauth_verifier])
