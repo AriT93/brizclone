@@ -1,0 +1,15 @@
+body {font-size:16px; font-family:sans-serif;}
+img {border:none;}
+h2 {font-size:20px;}
+
+#header h1 {margin:0; font-size:24px;}
+
+#content {
+    margin:0 auto;
+    width:850px;
+}
+
+.timeline {
+  margin:0 auto;
+  width:700px
+}
