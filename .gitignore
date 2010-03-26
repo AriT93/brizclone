@@ -2,3 +2,5 @@ config.yml
 users.db
 xmptmp*
 *~
+.#*
+#*
