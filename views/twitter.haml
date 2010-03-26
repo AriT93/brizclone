@@ -7,3 +7,7 @@
   %br
   %input{:type => "submit", :value => "Tweet that shit"}
 = partial("timeline", :collection => @tweets)
+.pagination
+  -if params[:page] && (params[:page].to_i - 1) > 0
+    %a{:href => "/twitter?page=#{params[:page].to_i - 1}"} Newer
+  %a{:href => "/twitter?page=#{params[:page].to_i + 1}"}Older

@@ -1,4 +1,4 @@
-body {font-size:16px; font-family:verdana;}
+body {font-size:16px; font-family:sans-serif;}
 img {border:none;}
 h2 {font-size:20px;}
 
@@ -9,14 +9,7 @@ h2 {font-size:20px;}
     width:850px;
 }
 
-#connect_button {
-  margin:20 auto;
-  width:250px;
-  font-size:20px;
-  color:red;
-}
-
 .timeline {
-  margin:0 auto; 
+  margin:0 auto;
   width:700px
 }

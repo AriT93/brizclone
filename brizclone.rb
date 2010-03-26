@@ -13,8 +13,10 @@ require 'pp'
 use Rack::Session::Cookie, :secret => 'mah sekrit is 7 proxies oh yeah!!'
 use Rack::Flash, :sweep => true
 
-DataMapper.setup(:default, "sqlite3://#{Dir.pwd}/users.db"
+
+  DataMapper.setup(:default, "sqlite3://#{Dir.pwd}/users.db"
 )
+
 
 class BcUser
   include DataMapper::Resource
@@ -29,12 +31,12 @@ configure do
   @@config = YAML.load_file("config.yml") rescue nil || { }
 end
 
-
-
-
 helpers do
   def partial(name, options={})
     haml("_#{name.to_s}".to_sym, options.merge(:layout => false))
+  end
+  def link_to(text,url)
+    "<a href=#{url}>#text</a>"
   end
 end
 
@@ -87,13 +89,17 @@ get '/auth' do
   redirect '/'
 end
 
+get '/arit93itter.css' do
+  sass :arit93itter
+end
 get '/login' do
   haml :login
 end
 
 get '/twitter' do
+  params[:page] ||= 1
   redirect '/' unless @profile
-  @tweets = @profile.friends_timeline
+  @tweets = @profile.friends_timeline(:page => params[:page])
   haml :twitter
 end
 
