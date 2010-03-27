@@ -9,5 +9,5 @@
 = partial("timeline", :collection => @tweets)
 .pagination
   -if params[:page] && (params[:page].to_i - 1) > 0
-    %a{:href => "/twitter?page=#{params[:page].to_i - 1}"} Newer
-  %a{:href => "/twitter?page=#{params[:page].to_i + 1}"}Older
+    %a{:href => "/#{request.path_info}?page=#{params[:page].to_i - 1}"} Newer
+  %a{:href => "/#{request.path_info}?page=#{params[:page].to_i + 1}"}Older

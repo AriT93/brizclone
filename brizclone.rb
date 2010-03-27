@@ -8,7 +8,6 @@ require 'twitter'
 require 'sinatra-authentication'
 require 'haml'
 require 'rack-flash'
-require 'pp'
 
 use Rack::Session::Cookie, :secret => 'mah sekrit is 7 proxies oh yeah!!'
 use Rack::Flash, :sweep => true
@@ -96,6 +95,13 @@ get '/twitter' do
   params[:page] ||= 1
   redirect '/' unless @profile
   @tweets = @profile.friends_timeline(:page => params[:page])
+  haml :twitter
+end
+
+get '/twitter/replies' do
+  params[:page] ||= 1
+  redirect '/' unless @profile
+  @tweets = @profile.replies(:page => params[:page])
   haml :twitter
 end
 
