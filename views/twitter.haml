@@ -1,5 +1,8 @@
 #update
   %form{:id => "tweet", :method => "post", :action => "/twitter"}
+    %div{:style => "margin:0;padding:0;display:inline;"}
+      %input{:id => "in_reply_to_status_id", :name => "in_reply_to_status_id", :type => "hidden"}
+      %input{:id => "return_to", :name => "return_to", :type => "hidden", :value => "/"}
     %span{:id =>"countdown"}140
     %label{:for => "text"} Tweet a twat:
     %textarea{:id => "text", :name => "text"}

@@ -8,4 +8,17 @@
           = "@#{tweet.user.screen_name}"
         %br
         = pretty_datetime(Time.parse(tweet.created_at))
+      %p{:class => "actions"}
+        %span{:title => "# of followers", :class =>"followers_count"}
+          = tweet.user.followers_count
+        %a{:href => "http://twitter.com/#{tweet.user.screen_name}/statuses/#{tweet.in_reply_to_status_id}", :class => "icon"}
+          %img{:src => "/chat.gif"}
+        -if tweet.favorited
+          %a{:href => "http://twitter.com/#{tweet.user.screen_name}/statuses/#{tweet.id}", :class => "icon"}
+            %img{:src => "/star_on.gif"}
+        -else
+          %a{:href => "http://twitter.com/#{tweet.user.screen_name}/statuses/#{tweet.id}", :class => "icon"}
+            %img{:src => "/star.gif"}
+          %a{:href => "#", :class => "reply icon", :rel => "#{tweet.user.screen_name}:#{tweet.id}", :title => "Reply to #{ tweet.user.screen_name}"}
+            %img{:src => "/comment.gif"}
     .text= linkup_mentions(auto_link(tweet.text))
