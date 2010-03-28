@@ -1,10 +1,32 @@
-%html
+!!! Strict
+%html{:xmlns => "http://www.w3.org/1999/xhtml", "xml:lang" => "en", :lang => "en"}
   %head
+    %meta{ :content => "text/html; charset=utf-8","http-equiv" => "Content-Type"}
     %title= "My damn Twitter"
-    %link{ :rel => "stylesheet", :type => "text/css", :href => "arit93itter.css"}
+    %link{ :rel => "stylesheet", :type => "text/css", :href => "/common.css", :media => "screen"}
+    %script{:type => "text/javascript", :src => "jquery.js"}
+    %script{:type => "text/javascript", :src => "jquery.form.js"}
+    %script{:type => "text/javascript", :src => "application.js"}
   %body
-    #content= yield
-    %a{:href => "/logout"}Logout
-%a{:href => "/twitter"}twitter
-%a{:href => "/twitter/replies"}Replies
-%a{:href => "/"}home
+    #header
+      #header_inner
+        %h3
+          %a{:href => "http://#{request.host}/#{request.path_info}"}tweeting
+        %ul{:id => "nav"}
+          %li{:class =>"active"}
+            %a{:href => "/logout"}Logout
+          %li{:class =>""}
+            %a{:href => "/twitter"}twitter
+          %li{:class =>""}
+            %a{:href => "/twitter/replies"}Replies
+          %li{:class =>""}
+            %a{:href => "/"}home
+    #content
+      #content_inner
+        -if flash.has?(:notice)
+          .flash
+            %p= flash[:notice]
+        = yield
+    #footer
+      #footer_inner
+        #column

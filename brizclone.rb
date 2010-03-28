@@ -37,6 +37,19 @@ helpers do
   def link_to(text,url)
     "<a href=#{url}>#text</a>"
   end
+  def linkup_mentions(text)
+    text.gsub!(/@([\w]+)(\W)?/, '@<a href="http://twitter.com/\1">\1</a>\2')
+    text
+  end
+
+  def pretty_datetime(datetime)
+    date = datetime.strftime('%b %e, %Y').downcase
+    time = datetime.strftime('%l:%M%p').downcase
+    "<span class='date'>" + date + "</span>  <span class='time'>" + time + "</span>"
+  end
+ def auto_link(str)
+   str.gsub(/((https?|ftp|irc):[\S]+)/xi, %Q{<a href="\\1">\\1</a>})
+ end
 end
 
 before do
@@ -101,7 +114,7 @@ end
 get '/twitter/replies' do
   params[:page] ||= 1
   redirect '/' unless @profile
-  @tweets = @profile.replies(:page => params[:page])
+  @tweets = @profile.mentions(:page => params[:page])
   haml :twitter
 end
 

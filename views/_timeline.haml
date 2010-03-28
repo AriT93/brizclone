@@ -1,8 +1,11 @@
-.singleo
-  - @tweets.each do |tweet|
-    .tweeted
-      %a{:href => "http://twitter.com/#{tweet.user.screen_name}"}
+- @tweets.each do |tweet|
+  .status{:id => "status_#{tweet.id}"}
+    .info
+      %a{:href => "http://twitter.com/#{tweet.user.screen_name}", :class => "profile_image"}
         %img{:src =>"#{tweet.user.profile_image_url}", :width =>"48", :height =>"48"}
-      %a{:href => "http://twitter.com/#{tweet.user.screen_name}"}
-        = "@#{tweet.user.screen_name}"
-    = tweet.text
+      %p{:class => "who_when"}
+        %a{:href => "http://twitter.com/#{tweet.user.screen_name}"}
+          = "@#{tweet.user.screen_name}"
+        %br
+        = pretty_datetime(Time.parse(tweet.created_at))
+    .text= linkup_mentions(auto_link(tweet.text))
