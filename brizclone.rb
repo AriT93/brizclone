@@ -7,6 +7,7 @@ require 'digest/sha1'
 require 'twitter'
 require 'sinatra-authentication'
 require 'haml'
+require 'dm-migrations'
 require 'rack-flash'
 
 use Rack::Session::Cookie, :secret => 'mah sekrit is 7 proxies oh yeah!!'
@@ -25,6 +26,8 @@ class BcUser
   property :atoken, String
   property :asecret, String
 end
+
+DataMapper.auto_upgrade!
 
 configure do
   @@config = YAML.load_file("config.yml") rescue nil || { }
