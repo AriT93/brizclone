@@ -107,7 +107,7 @@ end
 get '/twitter' do
   params[:page] ||= 1
   redirect '/' unless @profile
-  @tweets = @profile.friends_timeline(:page => params[:page])
+  @tweets = @profile.home_timeline(:page => params[:page])
   haml :twitter
 end
 
