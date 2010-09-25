@@ -121,7 +121,7 @@ end
 post '/twitter' do
  options = {}
  options.update(:in_reply_to_status_id => params[:in_reply_to_status_id]) if params[:in_reply_to_status_id].present?
- tweet = @profile.update(params[:text])
+ tweet = @profile.update(params[:text], options)
  flash[:notice] = "tweet ##{tweet.id} created"
  redirect '/twitter'
 end
