@@ -73,7 +73,6 @@ jQuery(function($) {
     var screen_name = pieces[0];
     var id = pieces[1];
     $('#text').focus().val('@' + screen_name + ' ');
-    alert(id);
     $('#in_reply_to_status_id').val(id);
     $('label[for=text]').text('Replying to ' + screen_name + "'s tweet #" + id);
     return false;
