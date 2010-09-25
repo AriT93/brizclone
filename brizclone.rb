@@ -119,7 +119,9 @@ get '/twitter/replies' do
 end
 
 post '/twitter' do
-  tweet = @profile.update(params[:text])
-  flash[:notice] = "tweet ##{tweet.id} created"
-  redirect '/twitter'
+ options = {}
+ options.update(:in_reply_to_status_id => params[:in_reply_to_status_id]) if params[:in_reply_to_status_id].present?∫∫
+ tweet = @profile.update(params[:text])
+ flash[:notice] = "tweet ##{tweet.id} created"
+ redirect '/twitter'
 end
