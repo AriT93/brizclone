@@ -110,7 +110,7 @@ end
 get '/twitter' do
   params[:page] ||= 1
   redirect '/' unless @profile
-  @tweets = @profile.friends_timeline(:page => params[:page])
+  @tweets = @profile.home_timeline(:page => params[:page])
   haml :twitter
 end
 
@@ -122,7 +122,9 @@ get '/twitter/replies' do
 end
 
 post '/twitter' do
-  tweet = @profile.update(params[:text])
-  flash[:notice] = "tweet ##{tweet.id} created"
-  redirect '/twitter'
+ options = {}
+ options.update(:in_reply_to_status_id => params[:in_reply_to_status_id]) if params[:in_reply_to_status_id].present?
+ tweet = @profile.update(params[:text], options)
+ flash[:notice] = "tweet ##{tweet.id} created #{params[:in_reply_to_status_id]}"
+ redirect '/twitter'
 end

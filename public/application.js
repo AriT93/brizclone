@@ -50,23 +50,23 @@ jQuery(function($) {
   $('#text').keydown(function() {
     var length = $(this).val().length;
     countdown.text(allowed - length);
-    
+
     if (length == 0) {
       $('#in_reply_to_status_id').val('');
       var label = $('label[for=text]')
       label.text(label.data('original_text'));
     }
   });
-  
+
   $('a.dm').click(function() {
     window.scrollTo(0, 0);
     $('#text').focus().val('d ' + $(this).attr('rel') + ' ');
     return false;
   });
-  
+
   var label = $('label[for=text]')
   label.data('original_text', label.text());
-  
+
   $('a.reply').click(function() {
     window.scrollTo(0, 0);
     var pieces = $(this).attr('rel').split(':');
